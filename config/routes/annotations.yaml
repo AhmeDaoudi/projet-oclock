@@ -1,0 +1,11 @@
+controllers:
+    resource: ../../src/Controller/
+    type: annotation
+    prefix: /
+
+#Note: use your own resource/directory as you prefer
+
+rest_controllers:
+    resource: ../../src/Api/Controller/
+    type: annotation
+    prefix: /api/

@@ -1,0 +1,53 @@
+App\Entity\User:
+    user_{1..20}:
+        lastname: '<lastName()>'
+        firstname: '<firstName()>'
+        email: '<freeEmail()>'
+        password: 'password'
+        pseudo: '<userName()>'
+        birthdate: '<dateTime()>'
+        biography: '<realText(1000, 4)>'
+        photo: 'https://vignette.wikia.nocookie.net/les-geek-du-3879/images/6/68/Utilisateur_anonyme.jpg/revision/latest?cb=20170209193802&path-prefix=fr'
+
+App\Entity\Type:
+    type_{1..3}:
+        name: '<colorName()>'
+  
+App\Entity\Category:
+    category_{1..10}:
+        name (unique): '<category()>'
+        type: '@type*'
+
+App\Entity\Editor:
+    editor_{1..10}:
+        name: '<company()>'
+        website: '<domainName()>'
+
+App\Entity\Platform:
+    platform_{1..10}:
+        name (unique): '<platform()>'
+
+App\Entity\Developer:
+    developer_{1..10}:
+        name (unique): '<developer()>'
+        website: '<domainName()>'
+
+App\Entity\Game:
+    game_{1..20}:
+        name (unique): '<game()>'
+        description: '<realText(1000, 4)>'
+        cover: 'http://images2.fanpop.com/image/photos/13900000/Video-Game-Cover-video-games-13975957-640-905.jpg'
+        illustration: 'http://assets1.ignimgs.com/2017/04/20/mariokart8deluxe-1280-1-1492647771597_1280w.jpg'
+        pegi: '<numberBetween(3, 18)>'
+        website: '<domainName()>'
+        releasedAt: '<dateTime()>'
+        categories: '2x @category*'
+        editors: '2x @editor*'
+        developers: '2x @developer*'
+        platforms: '3x @platform*'
+
+App\Entity\Comment:
+    comment_{1..30}:
+        title: '<realText(25)>'
+        content: '<realText(1000, 4)>'
+        user: '@user*'

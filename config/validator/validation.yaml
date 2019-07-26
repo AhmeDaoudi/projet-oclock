@@ -1,0 +1,112 @@
+App\Entity\User:
+
+    # constraints:
+    #     - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+    #         fields: email
+    #         groups: [create, edit]
+    #         message: L'email est déjà utilisé(e)s.
+
+    properties:
+        email:
+            - NotBlank:
+                    message: Veuillez indiquer votre email.
+                    groups: create
+            - Email: 
+                    message: L'email n'est pas valide.
+                    groups: create
+            - Length: 
+                    min: 5
+                    max: 50
+                    minMessage: L'email est trop courte, minimum 5 caractères.
+                    maxMessage: L'email est trop longue, maximum 50 caractères.    
+                    groups: create
+
+        password:
+            - NotBlank:
+                    message: Veuillez indiquer votre mot de passe.
+                    groups: create
+            - Length: 
+                    min: 5
+                    max: 50
+                    minMessage: Le mot de passe est trop court.
+                    maxMessage: Le mot de passe est trop long.
+                    groups: create
+            - Regex:
+                    pattern: '/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/'
+                    message: Mot de passe non valide.
+                    groups: create 
+
+        firstname: 
+            - Length:
+                    min: 2
+                    max: 50
+                    minMessage: Le prénom est trop court.
+                    maxMessage: Le prénom est trop long.
+
+        lastname:
+            - Length:
+                    min: 2
+                    max: 50
+                    minMessage: Le nom est trop court.
+                    maxMessage: Le nom est trop long.
+
+        pseudo:
+            - NotBlank:
+                    message: Veuillez indiquer votre pseudo.
+                    groups: create
+            - Length:
+                    min: 3
+                    max: 20
+                    minMessage: Le pseudo est trop court.
+                    maxMessage: Le pseudo est trop long.
+                    groups: create
+
+        photo:
+            - Url:
+                    message: L'URL n'est pas valide.
+  
+        biography:
+            - Length:
+                    min: 5
+                    max: 1500
+                    minMessage: Votre biographie est trop courte.
+                    maxMessage: Votre biographie est trop longue.
+
+        birthdate:
+            - Date: ~
+        
+App\Entity\Score:
+
+    properties:
+        value:
+            - NotBlank: ~
+
+App\Entity\State:
+
+    properties:
+        status:
+            - NotBlank: ~
+
+App\Entity\Comment:
+
+    properties:
+        title:
+            - NotBlank: 
+                message: Veuillez indiquer un titre.
+                groups: create
+            - Length:
+                    min: 3
+                    max: 75
+                    minMessage: Votre titre est trop court.
+                    maxMessage: Votre titre est trop long.
+                    groups: create
+        content:
+            - NotBlank: 
+                message: Veuillez indiquer un commentaire.
+                groups: create
+            - Length:
+                    min: 5
+                    max: 1000
+                    minMessage: Votre commentaire est trop court.
+                    maxMessage: Votre commentaire est trop long.
+                    groups: create

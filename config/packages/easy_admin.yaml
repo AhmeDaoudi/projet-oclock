@@ -1,0 +1,323 @@
+easy_admin:
+
+    site_name: 'G<i class="fas fa-headset"></i>MEHUB - Admin'
+
+    list:
+        max_results: 30
+
+    design:
+        brand_color: '#1ABC9C'
+        assets:
+            favicon: 
+                path: '/images/favicon.ico'
+        menu:
+            - label: 'Menu'
+            - { label: 'Retour sur GameHub', icon: 'fas fa-home', url: 'http://gamehub.com/' }
+            - label: 'Gestion des données'
+            - { entity: Game, icon: 'fas fa-gamepad'}
+            - { entity: Type, icon: 'fas fa-tenge' }
+            - { entity: Category, icon: 'fas fa-table' }
+            - { entity: Editor, icon: 'fas fa-money-check-alt' }
+            - { entity: Developer, icon: 'fas fa-tools' }
+            - { entity: Platform, icon: 'fas fa-hdd' }
+            - { entity: Comment, icon: 'fas fa-comments' }
+            - { entity: User, icon: 'fas fa-users' }
+
+    entities:
+
+        Game:
+
+            class: App\Entity\Game
+            label: 'Jeux'
+            list:
+                sort: ['id', 'DESC']
+                title: 'Gestion des jeux'
+                actions: 
+                    - { name: 'new', label: '', icon: 'fas fa-plus', title: 'Ajouter' }
+                    - { name: 'edit', label: '', icon: 'fas fa-edit', title: 'Modifier' }
+                    - { name: 'delete', label: '', icon: 'fas fa-trash-alt', title: 'Supprimer' }
+                    - { name: 'search', label: 'Rechercher un jeu' }
+                fields: 
+                    - 'id'
+                    - { property: 'cover', label: 'Jaquette', type: 'image', base_path: 'http' }
+                    - { property: 'name', label: 'Nom' }
+                    - { property: 'description' }
+                    - { property: 'score', label: 'Note' }
+                    - { property: 'releasedAt', label: 'Date de sortie' }
+                    - { property: 'createdAt', label: 'Ajouté le' }
+                    - { property: 'updatedAt', label: 'Mis à jour le' }
+            new:
+                title: 'Ajouter un nouveau jeu'
+                actions: 
+                    - { name: 'list', label: 'Retourner à la liste', icon: 'fas fa-arrow-left' }
+                fields:
+                    - { property: 'name', label: 'Nom' }
+                    - { property: 'description' }
+                    - { property: 'cover', label: 'Jaquette' }
+                    - { property: 'illustration', label: 'Couverture' }
+                    - { property: 'pegi', label: 'PEGI' }
+                    - { property: 'website', label: 'Site web' }
+                    - { property: 'releasedAt', label: 'Date de sortie', type_options: { widget: 'single_text' } }
+                    - { property: 'categories', label: 'Catégories' }
+                    - { property: 'developers', label: 'Développeurs' }
+                    - { property: 'editors', label: 'Éditeurs' }
+
+            edit:
+                title: 'Modifier un jeu'
+                actions: 
+                    - { name: 'delete', label: 'Supprimer le jeu', icon: false }
+                    - { name: 'list', label: 'Retourner à la liste', icon: 'fas fa-arrow-left' }
+                fields:
+                    - { property: 'name', label: 'Nom' }
+                    - { property: 'description' }
+                    - { property: 'cover', label: 'Jaquette' }
+                    - { property: 'illustration', label: 'Couverture' }
+                    - { property: 'pegi', label: 'PEGI' }
+                    - { property: 'website', label: 'Site web' }
+                    - { property: 'releasedAt', label: 'Date de sortie', type_options: { widget: 'single_text' }  }
+                    - { property: 'categories', label: 'Catégories' }
+                    - { property: 'developers', label: 'Développeurs' }
+                    - { property: 'editors', label: 'Éditeurs' }
+
+        Type:
+
+            class: App\Entity\Type
+            label: 'Types'
+            list:
+                sort: ['id', 'DESC']
+                title: 'Gestion des types'
+                actions: 
+                    - { name: 'new', label: '', icon: 'fas fa-plus', title: 'Ajouter' }
+                    - { name: 'edit', label: '', icon: 'fas fa-edit', title: 'Modifier' }
+                    - { name: 'delete', label: '', icon: 'fas fa-trash-alt', title: 'Supprimer' }
+                    - { name: 'search', label: 'Rechercher un type' }
+                fields: 
+                    - 'id'
+                    - { property: 'name', label: 'Nom' }
+                    - { property: 'categories', label: 'Nombre de catégories' }
+                    - { property: 'createdAt', label: 'Ajouté le' }
+                    - { property: 'updatedAt', label: 'Mis à jour le' }
+            new:
+                title: 'Ajouter un nouveau type'
+                actions: 
+                    - { name: 'list', label: 'Retourner à la liste', icon: 'fas fa-arrow-left' }
+                fields:
+                    - { property: 'name', label: 'Nom' }
+
+            edit:
+                title: 'Modifier un type'
+                actions: 
+                    - { name: 'delete', label: 'Supprimer le type', icon: false }
+                    - { name: 'list', label: 'Retourner à la liste', icon: 'fas fa-arrow-left' }
+                fields:
+                    - { property: 'name', label: 'Nom' }
+
+        Category:
+
+            class: App\Entity\Category
+            label: 'Catégories'
+            list:
+                sort: ['id', 'DESC']
+                title: 'Gestion des catégories'
+                actions: 
+                    - { name: 'new', label: '', icon: 'fas fa-plus', title: 'Ajouter' }
+                    - { name: 'edit', label: '', icon: 'fas fa-edit', title: 'Modifier' }
+                    - { name: 'delete', label: '', icon: 'fas fa-trash-alt', title: 'Supprimer' }
+                    - { name: 'search', label: 'Rechercher une catégorie' }
+                fields: 
+                    - 'id'
+                    - { property: 'name', label: 'Nom' }
+                    - { property: 'games', label: 'Nombre de jeux' }
+                    - { property: 'createdAt', label: 'Ajouté le' }
+                    - { property: 'updatedAt', label: 'Mis à jour le' }
+            new:
+                title: 'Ajouter une nouvelle catégorie'
+                actions: 
+                    - { name: 'list', label: 'Retourner à la liste', icon: 'fas fa-arrow-left'}
+                fields:
+                    - { property: 'name', label: 'Nom' }
+
+            edit:
+                title: 'Modifier une catégorie'
+                actions: 
+                    - { name: 'delete', label: 'Supprimer la catégorie', icon: false }
+                    - { name: 'list', label: 'Retourner à la liste', icon: 'fas fa-arrow-left' }
+                fields:
+                    - { property: 'name', label: 'Nom' }
+
+        Editor:
+
+            class: App\Entity\Editor
+            label: 'Éditeurs'
+            list:
+                sort: ['id', 'DESC']
+                title: 'Gestion des éditeurs'
+                actions: 
+                    - { name: 'new', label: '', icon: 'fas fa-plus', title: 'Ajouter' }
+                    - { name: 'edit', label: '', icon: 'fas fa-edit', title: 'Modifier' }
+                    - { name: 'delete', label: '', icon: 'fas fa-trash-alt', title: 'Supprimer' }
+                    - { name: 'search', label: 'Rechercher un éditeur' }
+                fields: 
+                    - 'id'
+                    - { property: 'name', label: 'Nom' }
+                    - { property: 'website', label: 'Site web' }
+                    - { property: 'games', label: 'Nombre de jeux' }
+                    - { property: 'createdAt', label: 'Ajouté le' }
+                    - { property: 'updatedAt', label: 'Mis à jour le' }
+            new:
+                title: 'Ajouter un nouvel éditeur'
+                actions: 
+                    - { name: 'list', label: 'Retourner à la liste', icon: 'fas fa-arrow-left' }
+                fields:
+                    - { property: 'name', label: 'Nom' }
+                    - { property: 'website', label: 'Site web' }
+
+            edit:
+                title: 'Modifier un éditeur'
+                actions: 
+                    - { name: 'delete', label: "Supprimer l'éditeur", icon: false }
+                    - { name: 'list', label: 'Retourner à la liste', icon: 'fas fa-arrow-left' }
+                fields:
+                    - { property: 'name', label: 'Nom' }
+                    - { property: 'website', label: 'Site web' }
+
+        Developer:
+
+            class: App\Entity\Developer
+            label: 'Développeurs'
+            list:
+                sort: ['id', 'DESC']
+                title: 'Gestion des développeurs'
+                actions: 
+                    - { name: 'new', label: '', icon: 'fas fa-plus', title: 'Ajouter' }
+                    - { name: 'edit', label: '', icon: 'fas fa-edit', title: 'Modifier' }
+                    - { name: 'delete', label: '', icon: 'fas fa-trash-alt', title: 'Supprimer' }
+                    - { name: 'search', label: 'Rechercher un développeur' }
+                fields: 
+                    - 'id'
+                    - { property: 'name', label: 'Nom' }
+                    - { property: 'website', label: 'Site web' }
+                    - { property: 'games', label: 'Nombre de jeux' }
+                    - { property: 'createdAt', label: 'Ajouté le' }
+                    - { property: 'updatedAt', label: 'Mis à jour le' }
+            new:
+                title: 'Ajouter un nouveau développeur'
+                actions: 
+                    - { name: 'list', label: 'Retourner à la liste', icon: 'fas fa-arrow-left' }
+                fields:
+                    - { property: 'name', label: 'Nom' }
+                    - { property: 'website', label: 'Site web' }
+
+            edit:
+                title: 'Modifier un développeur'
+                actions: 
+                    - { name: 'delete', label: 'Supprimer le développeur', icon: false }
+                    - { name: 'list', label: 'Retourner à la liste', icon: 'fas fa-arrow-left' }
+                fields:
+                    - { property: 'name', label: 'Nom' }
+                    - { property: 'website', label: 'Site web' }
+
+        Platform:
+
+            class: App\Entity\Platform
+            label: 'Platformes'
+            list:
+                sort: ['id', 'DESC']
+                title: 'Gestion des plateformes'
+                actions: 
+                    - { name: 'new', label: '', icon: 'fas fa-plus', title: 'Ajouter' }
+                    - { name: 'edit', label: '', icon: 'fas fa-edit', title: 'Modifier' }
+                    - { name: 'delete', label: '', icon: 'fas fa-trash-alt', title: 'Supprimer' }
+                    - { name: 'search', label: 'Rechercher une platforme' }
+                fields: 
+                    - 'id'
+                    - { property: 'name', label: 'Nom' }
+                    - { property: 'games', label: 'Nombre de jeux' }
+                    - { property: 'createdAt', label: 'Ajouté le' }
+                    - { property: 'updatedAt', label: 'Mis à jour le' }
+            new:
+                title: 'Ajouter une nouvelle platforme'
+                actions: 
+                    - { name: 'list', label: 'Retourner à la liste', icon: 'fas fa-arrow-left' }
+                fields:
+                    - { property: 'name', label: 'Nom' }
+
+            edit:
+                title: 'Modifier un jeu'
+                actions: 
+                    - { name: 'delete', label: 'Supprimer la platforme', icon: false }
+                    - { name: 'list', label: 'Retourner à la liste', icon: 'fas fa-arrow-left' }
+                fields:
+                    - { property: 'name', label: 'Nom' }
+
+        Comment:
+
+            class: App\Entity\Comment
+            label: 'Commentaires'
+            list:
+                sort: ['id', 'DESC']
+                title: 'Gestion des commentaires'
+                actions: 
+                    - { name: '-new'}
+                    - { name: '-edit', label: '', icon: 'fas fa-edit', title: 'Modifier' }
+                    - { name: 'delete', label: '', icon: 'fas fa-trash-alt', title: 'Supprimer' }
+                    - { name: 'search', label: 'Rechercher un commentaire' }
+                fields: 
+                    - 'id'
+                    - { property: 'isActive', label: 'Actif/Inactif' }
+                    - { property: 'title', label: 'Titre' }
+                    - { property: 'user', label: 'Utilisateur' }
+                    - { property: 'game', label: 'Jeu' }
+                    - { property: 'createdAt', label: 'Ajouté le' }
+                    - { property: 'updatedAt', label: 'Mis à jour le' }
+
+        User:
+
+            class: App\Entity\User
+            controller: App\Controller\UserController
+            label: 'Utilisateurs'
+            list:
+                sort: ['id', 'DESC']
+                title: 'Gestion des utilisateurs'
+                actions: 
+                    - { name: 'new', label: '', icon: 'fas fa-plus' }
+                    - { name: 'edit', label: '', icon: 'fas fa-edit', title: 'Modifier' }
+                    - { name: 'delete', label: '', icon: 'fas fa-trash-alt', title: 'Supprimer' }
+                    - { name: 'search', label: 'Rechercher un utilisateur' }
+                fields: 
+                    - 'id'
+                    - { property: 'photo', type: 'image', base_path: 'http' }
+                    - { property: 'isActive', label: 'Actif/Inactif' }
+                    - { property: 'email' }
+                    - { property: 'pseudo', label: 'Pseudo' }
+                    - { property: 'roles', label: 'Rôles' }
+                    - { property: 'firstname', label: 'Prénom' }
+                    - { property: 'lastname', label: 'Nom' }
+                    - { property: 'createdAt', label: 'Ajouté le' }
+                    - { property: 'updatedAt', label: 'Mis à jour le' }
+            new:
+                title: 'Ajouter un nouvel utilisateur'
+                actions: 
+                    - { name: 'list', label: 'Retourner à la liste', icon: 'fas fa-arrow-left' }
+                fields:
+                    - { property: 'email' }
+                    - { property: 'pseudo', label: 'Pseudo' }
+                    - { property: 'photo' }
+                    - { property: 'password', label: 'Mot de passe', type: 'password' }
+                    - { property: 'roles', label: 'Rôles', type: 'collection' }
+                    - { property: 'firstname', label: 'Prénom' }
+                    - { property: 'lastname', label: 'Nom' }
+
+            edit:
+                title: 'Modifier un utilisateur'
+                actions: 
+                    - { name: 'delete', label: "Supprimer l'utilisateur", icon: false }
+                    - { name: 'list', label: 'Retourner à la liste', icon: 'fas fa-arrow-left' }
+                fields:
+                    - { property: 'email' }
+                    - { property: 'pseudo', label: 'Pseudo' }
+                    - { property: 'photo' }
+                    - { property: 'password', label: 'Mot de passe', type: 'password' }
+                    - { property: 'roles', label: 'Rôles', type: 'collection' }
+                    - { property: 'firstname', label: 'Prénom' }
+                    - { property: 'lastname', label: 'Nom' }
